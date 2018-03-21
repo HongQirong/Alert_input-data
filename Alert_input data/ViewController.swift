@@ -24,6 +24,13 @@ class ViewController: UIViewController {
         {(action) in
             self.dismiss(animated: true, completion: nil)
         }
+        let alertreturn = UIAlertController(title:"帳號密碼不可為空", message: "",  preferredStyle: .alert)
+        let okAction = UIAlertAction(title:"好哦", style: .default){(action) in
+            self.dismiss(animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
+        }
+        alertreturn.addAction(okAction)
+        
         let loginAction = UIAlertAction(title: "登入", style: .default)
         {(action) in
             let uid = alert.textFields![0].text
@@ -31,7 +38,16 @@ class ViewController: UIViewController {
             
             print("帳號：\(uid as String?)")
             print("密碼:\(pwd as Optional)")
-            print("密碼：\(pwd?.debugDescription)")
+            print("密碼：\(pwd.debugDescription)")
+            if (uid == "" || pwd == ""){
+                self.dismiss(animated: true, completion: nil)
+                self.present(
+                    alertreturn,
+                    animated: true,
+                    completion: nil)
+            
+            }
+            
         }
         
         alert.addTextField {(textField)in
